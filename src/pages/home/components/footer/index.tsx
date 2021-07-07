@@ -33,6 +33,7 @@ const Container = styled.footer`
   justify-content: space-between;
   background-color: ${(props: DefaultThemeProps) => props.theme.background.primary};
   color: ${(props: DefaultThemeProps) => props.theme.text.primary};
+  border-top: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
   padding: 20px;
 `
 
@@ -41,6 +42,11 @@ const ThemeSwitcher = styled.div`
   align-items: center;
 
   & label {
+    cursor: pointer;
     margin-right: 10px;
+  }
+
+  & input {
+    cursor: pointer;
   }
 `

@@ -52,6 +52,7 @@ const Container = styled.header`
   align-items: center;
   justify-content: space-between;
   background-color: ${(props: DefaultThemeProps) => props.theme.background.primary};
+  border-bottom: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
   padding: 20px;
 `
 
