@@ -7,12 +7,14 @@ import { getActiveTab } from 'store/modules/theme/selectors'
 import { EnumTabs } from 'store/modules/theme/types'
 import { DefaultThemeProps } from 'styles/types'
 import { logout } from 'store/modules/auth/actions'
+import { useTranslation } from 'react-i18next'
 
 type TLinkProps = {
   activeTab: boolean
 }
 
 export const Header: FC = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const history = useHistory()
   const activeTab = useSelector(getActiveTab)
@@ -26,23 +28,23 @@ export const Header: FC = () => {
     <Container>
       <Navigation>
         <StyledNavLink to={Routes.home}>
-          <LinkText activeTab={activeTab === EnumTabs.main}>Main Page</LinkText>
+          <LinkText activeTab={activeTab === EnumTabs.main}>{t('mainPage')}</LinkText>
         </StyledNavLink>
 
         <StyledNavLink to={Routes.pageOne}>
-          <LinkText activeTab={activeTab === EnumTabs.pageOne}>Page One</LinkText>
+          <LinkText activeTab={activeTab === EnumTabs.pageOne}>{t('pageOne')}</LinkText>
         </StyledNavLink>
 
         <StyledNavLink to={Routes.pageTwo}>
-          <LinkText activeTab={activeTab === EnumTabs.pageTwo}>Page Two</LinkText>
+          <LinkText activeTab={activeTab === EnumTabs.pageTwo}>{t('pageTwo')}</LinkText>
         </StyledNavLink>
 
         <StyledNavLink to={Routes.pageThree}>
-          <LinkText activeTab={activeTab === EnumTabs.pageThree}>Page Three</LinkText>
+          <LinkText activeTab={activeTab === EnumTabs.pageThree}>{t('pageThree')}</LinkText>
         </StyledNavLink>
       </Navigation>
 
-      <Logout onClick={onLogout}>Logout</Logout>
+      <Logout onClick={onLogout}>{t('logout')}</Logout>
     </Container>
   )
 }

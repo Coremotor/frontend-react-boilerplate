@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux'
 import { setActiveTab } from 'store/modules/theme/reducer'
 import { EnumTabs } from 'store/modules/theme/types'
 import { DefaultThemeProps } from 'styles/types'
+import { useTranslation } from 'react-i18next'
 
 export const PageTwo: FC /*<Props>*/ = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -13,7 +15,7 @@ export const PageTwo: FC /*<Props>*/ = () => {
   }, [])
   return (
     <Container>
-      <Text>Page Two</Text>
+      <Text>{t('pageTwo')}</Text>
     </Container>
   )
 }

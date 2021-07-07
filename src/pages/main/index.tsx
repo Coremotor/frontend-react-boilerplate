@@ -4,16 +4,18 @@ import { useDispatch } from 'react-redux'
 import { setActiveTab } from 'store/modules/theme/reducer'
 import { EnumTabs } from 'store/modules/theme/types'
 import { DefaultThemeProps } from 'styles/types'
+import { useTranslation } from 'react-i18next'
 
 export const MainPage: FC /*<TProps>*/ = () => {
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   useEffect(() => {
     dispatch(setActiveTab(EnumTabs.main))
   }, [])
   return (
     <Container>
-      <Text>Main Page</Text>
+      <Text>{t('mainPage')}</Text>
     </Container>
   )
 }

@@ -28,7 +28,6 @@ export const AuthPage: FC = () => {
   const submitDisabled = !watchAllFields.email || !watchAllFields.password || watchAllFields.password.length < 6
 
   const onSubmit: SubmitHandler<TAuthFormValues> = (data) => {
-    // console.log(data)
     dispatch(authRequest(data, goHomePage))
   }
 
