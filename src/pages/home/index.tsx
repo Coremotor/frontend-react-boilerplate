@@ -28,6 +28,7 @@ export const HomePage: FC = () => {
           closePopUp={() => dispatch(setError(null))}
         />
       )}
+
       {error?.error === 'Unauthorized' && (
         <Redirect
           to={{
@@ -36,13 +37,23 @@ export const HomePage: FC = () => {
         />
       )}
 
+      {error?.error === 'Not Found' && (
+        <Redirect
+          to={{
+            pathname: Routes.error,
+          }}
+        />
+      )}
+
       <Header />
+
       <Switch>
         <Route exact path={Routes.home} component={MainPage} />
         <Route exact path={Routes.pageOne} component={PageOne} />
         <Route exact path={Routes.pageTwo} component={PageTwo} />
         <Route exact path={Routes.pageThree} component={PageThree} />
       </Switch>
+
       <Footer>Footer</Footer>
     </Container>
   )

@@ -23,8 +23,6 @@ export const Footer: FC = () => {
     await i18n.changeLanguage(lg)
   }
 
-  console.log('lg', i18n.language)
-
   return (
     <Container>
       <SwitchersWrapper>

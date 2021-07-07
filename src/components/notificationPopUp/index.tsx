@@ -35,22 +35,19 @@ const Container = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
+  display: grid;
+  place-items: center;
+  z-index: 1000;
 `
 
 const Window = styled.div`
   min-height: 200px;
-  width: 380px;
-  border-radius: 8px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: ${(props: DefaultThemeProps) => props.theme.background.primary};
-  border: 1px solid black;
+  border: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
   padding: 16px;
 `
 
@@ -61,11 +58,8 @@ const Title = styled.span`
   margin-bottom: 16px;
 `
 
-const ErrorTitle = styled.span`
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 10%;
-  margin-bottom: 16px;
+const ErrorTitle = styled(Title)`
+  color: red;
 `
 
 const MessageText = styled.span`
@@ -75,7 +69,7 @@ const MessageText = styled.span`
 
 const CloseBtn = styled.div`
   padding: 10px 20px;
-  border: 1px solid black;
-  border-radius: 8px;
+  border: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
+  color: ${(props: DefaultThemeProps) => props.theme.text.primary};
   cursor: pointer;
 `
