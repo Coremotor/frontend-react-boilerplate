@@ -20,7 +20,7 @@ export const PageOne: FC /*<Props>*/ = () => {
   )
 }
 
-const Container = styled.div`
+const Container = styled.main`
   width: 100%;
   height: 100%;
   display: flex;
