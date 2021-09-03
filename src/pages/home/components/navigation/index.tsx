@@ -60,11 +60,19 @@ export const MobileNavigation = () => {
   const dispatch = useDispatch()
   const hideNavMenu = () => dispatch(setShowMenu(false))
 
+  const onWrapperClick = () => {
+    dispatch(setShowMenu(false))
+  }
+
+  const onMobileNavContainerClick = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()
+
   return (
-    <MobileNavContainer>
-      <StyledCloseIcon onClick={hideNavMenu} />
-      <NavList />
-    </MobileNavContainer>
+    <Wrapper onClick={onWrapperClick}>
+      <MobileNavContainer onClick={onMobileNavContainerClick}>
+        <StyledCloseIcon onClick={hideNavMenu} />
+        <NavList />
+      </MobileNavContainer>
+    </Wrapper>
   )
 }
 
@@ -76,17 +84,23 @@ const NavListContainer = styled.nav`
   padding: 20px;
 `
 
-const MobileNavContainer = styled.div`
-  min-width: 200px;
+const Wrapper = styled.div`
   position: absolute;
   top: 0;
+  right: 0;
   bottom: 0;
+  left: 0;
+  z-index: ${zIndexLevels.two};
+`
+
+const MobileNavContainer = styled.div`
+  width: 200px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-right: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
-  background-color: inherit;
+  background-color: ${(props: DefaultThemeProps) => props.theme.background.primary};
   padding: 20px;
-  z-index: ${zIndexLevels.two};
 `
 
 const StyledNavLink = styled(Link)`

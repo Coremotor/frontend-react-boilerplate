@@ -6,7 +6,7 @@ import lightTheme from 'styles/lightTheme'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTheme } from 'store/modules/ui/selectors'
 import { GlobalStyles } from 'styles/global'
-import { setIsMobileDevise } from 'store/modules/ui/reducer'
+import { setIsMobileDevise, setShowMenu } from 'store/modules/ui/reducer'
 import { BREAKPOINTS } from 'styles/breakpoints'
 
 export function App() {
@@ -23,6 +23,7 @@ export function App() {
       dispatch(setIsMobileDevise(true))
     } else {
       dispatch(setIsMobileDevise(false))
+      dispatch(setShowMenu(false))
     }
   }
 
