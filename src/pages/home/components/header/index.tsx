@@ -3,27 +3,29 @@ import { useHistory } from 'react-router-dom'
 import { Routes } from 'routes/routes'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { DefaultThemeProps } from 'styles/types'
 import { logout } from 'store/modules/auth/actions'
 import { useTranslation } from 'react-i18next'
-import { BurgerButton } from 'components/burgerButton'
-import { getShowNavMenu } from 'store/modules/ui/selectors'
+import { getIsMobileDevise } from 'store/modules/ui/selectors'
+import { ReactComponent as BurgerIcon } from 'assets/hamburger.svg'
+import { setShowMenu } from 'store/modules/ui/reducer'
 
 export const Header: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const history = useHistory()
-  const showMenu = useSelector(getShowNavMenu)
+  const isMobile = useSelector(getIsMobileDevise)
 
   const onLogout = async () => {
     await dispatch(logout())
     history.push(Routes.auth)
   }
 
+  const showNavMenu = () => dispatch(setShowMenu(true))
+
   return (
     <Container>
-      {!showMenu && <BurgerButton />}
+      {isMobile && <StyledBurgerIcon onClick={showNavMenu} />}
       <Text>{t('header')}</Text>
       <Logout onClick={onLogout}>{t('logout')}</Logout>
     </Container>
@@ -46,4 +48,14 @@ const Logout = styled.div`
   color: ${(props: DefaultThemeProps) => props.theme.text.primary};
   cursor: pointer;
   margin-left: auto;
+`
+
+const StyledBurgerIcon = styled(BurgerIcon)`
+  width: 24px;
+  height: 24px;
+  & path {
+    stroke: ${(props: DefaultThemeProps) => props.theme.text.primary};
+  }
+  cursor: pointer;
+  margin-right: 20px;
 `

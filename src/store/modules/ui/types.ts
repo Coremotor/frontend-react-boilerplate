@@ -1,7 +1,8 @@
 export type TThemeState = {
   theme: string
   activeTab: string
-  showNavMenu: boolean
+  mobileDevise: boolean
+  showMenu: boolean
 }
 
 export enum EnumTabs {

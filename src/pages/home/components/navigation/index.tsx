@@ -4,45 +4,89 @@ import { EnumTabs } from 'store/modules/ui/types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { DefaultThemeProps } from 'styles/types'
-import { useSelector } from 'react-redux'
-import { getActiveTab } from 'store/modules/ui/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { getActiveTab, getIsMobileDevise } from 'store/modules/ui/selectors'
 import { useTranslation } from 'react-i18next'
+import { ReactComponent as CloseIcon } from 'assets/close.svg'
+import { setShowMenu } from 'store/modules/ui/reducer'
+import { zIndexLevels } from 'styles/zIndexLevels'
 
 type TLinkProps = {
   activeTab: boolean
 }
 
-export const Navigation = () => {
+const NavList = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const activeTab = useSelector(getActiveTab)
+  const isMobile = useSelector(getIsMobileDevise)
+
+  const onLinkClick = () => {
+    if (isMobile) {
+      dispatch(setShowMenu(false))
+    } else return
+  }
 
   return (
-    <Nav>
-      <StyledNavLink to={Routes.main}>
+    <>
+      <StyledNavLink to={Routes.main} onClick={onLinkClick}>
         <LinkText activeTab={activeTab === EnumTabs.main}>{t('mainPage')}</LinkText>
       </StyledNavLink>
 
-      <StyledNavLink to={Routes.pageOne}>
+      <StyledNavLink to={Routes.pageOne} onClick={onLinkClick}>
         <LinkText activeTab={activeTab === EnumTabs.theme}>{t('pageSwitchTheme')}</LinkText>
       </StyledNavLink>
 
-      <StyledNavLink to={Routes.pageTwo}>
+      <StyledNavLink to={Routes.pageTwo} onClick={onLinkClick}>
         <LinkText activeTab={activeTab === EnumTabs.language}>{t('pageSwitchLang')}</LinkText>
       </StyledNavLink>
 
-      <StyledNavLink to={Routes.pageThree}>
+      <StyledNavLink to={Routes.pageThree} onClick={onLinkClick}>
         <LinkText activeTab={activeTab === EnumTabs.pageThree}>{t('pageThree')}</LinkText>
       </StyledNavLink>
-    </Nav>
+    </>
   )
 }
 
-const Nav = styled.nav`
+export const Navigation = () => {
+  return (
+    <NavListContainer>
+      <NavList />
+    </NavListContainer>
+  )
+}
+
+export const MobileNavigation = () => {
+  const dispatch = useDispatch()
+  const hideNavMenu = () => dispatch(setShowMenu(false))
+
+  return (
+    <MobileNavContainer>
+      <StyledCloseIcon onClick={hideNavMenu} />
+      <NavList />
+    </MobileNavContainer>
+  )
+}
+
+const NavListContainer = styled.nav`
   min-width: 200px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
   padding: 20px;
+`
+
+const MobileNavContainer = styled.div`
+  min-width: 200px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
+  background-color: inherit;
+  padding: 20px;
+  z-index: ${zIndexLevels.two};
 `
 
 const StyledNavLink = styled(Link)`
@@ -63,4 +107,13 @@ const StyledNavLink = styled(Link)`
 
 const LinkText = styled.span`
   font-weight: ${(props: TLinkProps) => (props.activeTab ? 'bold' : 'normal')};
+`
+
+const StyledCloseIcon = styled(CloseIcon)`
+  width: 18px;
+  height: 18px;
+  align-self: flex-end;
+  fill: ${(props: DefaultThemeProps) => props.theme.text.primary};
+  cursor: pointer;
+  margin-bottom: 20px;
 `

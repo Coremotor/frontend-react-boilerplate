@@ -13,13 +13,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setError } from 'store/modules/errors/reducer'
 import { getError } from 'store/modules/errors/selectors'
 import { DefaultThemeProps } from 'styles/types'
-import { Navigation } from './components/navigation'
-import { getShowNavMenu } from 'store/modules/ui/selectors'
+import { MobileNavigation, Navigation } from './components/navigation'
+import { getIsMobileDevise, getShowMenu } from 'store/modules/ui/selectors'
 
 export const Home: FC = () => {
   const dispatch = useDispatch()
   const error = useSelector(getError)
-  const showMenu = useSelector(getShowNavMenu)
+  const isMobile = useSelector(getIsMobileDevise)
+  const showMenu = useSelector(getShowMenu)
 
   return (
     <Container>
@@ -48,7 +49,7 @@ export const Home: FC = () => {
         />
       )}
 
-      {showMenu && <Navigation />}
+      {isMobile ? showMenu && <MobileNavigation /> : <Navigation />}
 
       <Wrapper>
         <Header />
@@ -67,6 +68,7 @@ export const Home: FC = () => {
 }
 
 const Container = styled.div`
+  min-width: 360px;
   display: flex;
   height: 100vh;
   background-color: ${(props: DefaultThemeProps) => props.theme.background.primary};

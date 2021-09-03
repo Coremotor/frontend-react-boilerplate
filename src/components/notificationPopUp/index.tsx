@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { convertErrorsMessages } from './convertingMessage'
 import { TError } from 'store/modules/errors/types'
 import { DefaultThemeProps } from 'styles/types'
+import { zIndexLevels } from 'styles/zIndexLevels'
 
 type TProps = {
   isError: boolean
@@ -37,7 +38,7 @@ const Container = styled.div`
   left: 0;
   display: grid;
   place-items: center;
-  z-index: 1000;
+  z-index: ${zIndexLevels.three};
 `
 
 const Window = styled.div`

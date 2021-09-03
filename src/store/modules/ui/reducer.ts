@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { TThemeState } from 'store/modules/ui/types'
 
-const initialState: TThemeState = { theme: 'dark', activeTab: '', showNavMenu: true }
+const initialState: TThemeState = { theme: 'dark', activeTab: '', mobileDevise: true, showMenu: false }
 
 const userSlice = createSlice({
   name: 'ui',
@@ -13,12 +13,15 @@ const userSlice = createSlice({
     setActiveTab(state: TThemeState, action: PayloadAction<string>) {
       state.activeTab = action.payload
     },
-    setShowNavMenu(state: TThemeState, action: PayloadAction<boolean>) {
-      state.showNavMenu = action.payload
+    setIsMobileDevise(state: TThemeState, action: PayloadAction<boolean>) {
+      state.mobileDevise = action.payload
+    },
+    setShowMenu(state: TThemeState, action: PayloadAction<boolean>) {
+      state.showMenu = action.payload
     },
   },
 })
 
-export const { setTheme, setActiveTab, setShowNavMenu } = userSlice.actions
+export const { setTheme, setActiveTab, setIsMobileDevise, setShowMenu } = userSlice.actions
 
 export default userSlice.reducer
