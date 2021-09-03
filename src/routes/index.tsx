@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { PrivateRoute } from 'routes/private-route'
 import { Routes } from 'routes/routes'
 import { AuthPage } from 'pages/auth'
-import { HomePage } from 'pages/home'
+import { Home } from 'pages/home'
 import { ErrorPage } from 'pages/error'
 
 export const RootRoute: FC = () => (
@@ -15,8 +15,8 @@ export const RootRoute: FC = () => (
       <Route path={Routes.error}>
         <ErrorPage />
       </Route>
-      <PrivateRoute path={Routes.home}>
-        <HomePage />
+      <PrivateRoute path={Routes.main}>
+        <Home />
       </PrivateRoute>
     </Switch>
   </Router>

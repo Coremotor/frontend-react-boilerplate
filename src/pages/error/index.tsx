@@ -13,7 +13,7 @@ export const ErrorPage = () => {
       <ErrorTitle>Ошибка 404</ErrorTitle>
       <ErrorMessage>Кажется, что-то пошло не так! Страница, которую вы запрашиваете, не существует.</ErrorMessage>
       <ErrorMessage>Возможно она была удалена, или вы набрали неверный адрес.</ErrorMessage>
-      <LinkGoHome onClick={() => dispatch(setError(null))} to={Routes.home}>
+      <LinkGoHome onClick={() => dispatch(setError(null))} to={Routes.main}>
         Вернуться в личный кабинет
       </LinkGoHome>
     </Container>

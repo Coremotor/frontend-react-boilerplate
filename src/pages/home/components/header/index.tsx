@@ -1,23 +1,20 @@
 import React, { FC } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Routes } from 'routes/routes'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { getActiveTab } from 'store/modules/theme/selectors'
-import { EnumTabs } from 'store/modules/theme/types'
+
 import { DefaultThemeProps } from 'styles/types'
 import { logout } from 'store/modules/auth/actions'
 import { useTranslation } from 'react-i18next'
-
-type TLinkProps = {
-  activeTab: boolean
-}
+import { BurgerButton } from 'components/burgerButton'
+import { getShowNavMenu } from 'store/modules/ui/selectors'
 
 export const Header: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const history = useHistory()
-  const activeTab = useSelector(getActiveTab)
+  const showMenu = useSelector(getShowNavMenu)
 
   const onLogout = async () => {
     await dispatch(logout())
@@ -26,24 +23,8 @@ export const Header: FC = () => {
 
   return (
     <Container>
-      <Navigation>
-        <StyledNavLink to={Routes.home}>
-          <LinkText activeTab={activeTab === EnumTabs.main}>{t('mainPage')}</LinkText>
-        </StyledNavLink>
-
-        <StyledNavLink to={Routes.pageOne}>
-          <LinkText activeTab={activeTab === EnumTabs.pageOne}>{t('pageOne')}</LinkText>
-        </StyledNavLink>
-
-        <StyledNavLink to={Routes.pageTwo}>
-          <LinkText activeTab={activeTab === EnumTabs.pageTwo}>{t('pageTwo')}</LinkText>
-        </StyledNavLink>
-
-        <StyledNavLink to={Routes.pageThree}>
-          <LinkText activeTab={activeTab === EnumTabs.pageThree}>{t('pageThree')}</LinkText>
-        </StyledNavLink>
-      </Navigation>
-
+      {!showMenu && <BurgerButton />}
+      <Text>{t('header')}</Text>
       <Logout onClick={onLogout}>{t('logout')}</Logout>
     </Container>
   )
@@ -52,34 +33,13 @@ export const Header: FC = () => {
 const Container = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background-color: ${(props: DefaultThemeProps) => props.theme.background.primary};
   border-bottom: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
   padding: 20px;
 `
 
-const Navigation = styled.nav`
-  display: flex;
-`
-
-const StyledNavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  margin-right: 20px;
-  &:visited {
-    color: ${(props: DefaultThemeProps) => props.theme.text.primary};
-  }
-  &:active {
-    color: ${(props: DefaultThemeProps) => props.theme.text.primary};
-  }
-  &:last-child {
-    margin-right: 0;
-  }
-`
-
-const LinkText = styled.span`
-  font-weight: ${(props: TLinkProps) => (props.activeTab ? 'bold' : 'normal')};
+const Text = styled.span`
+  color: ${(props: DefaultThemeProps) => props.theme.text.primary};
 `
 
 const Logout = styled.div`

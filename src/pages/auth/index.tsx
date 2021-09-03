@@ -36,7 +36,7 @@ export const AuthPage: FC = () => {
   }
 
   const goHomePage = () => {
-    history.push(Routes.home)
+    history.push(Routes.main)
   }
 
   return (

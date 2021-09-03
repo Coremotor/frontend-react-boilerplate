@@ -1,8 +1,10 @@
 {
   "mainPage": "Main page",
-  "pageOne": "Page one",
-  "pageTwo": "Page two",
+  "pageSwitchTheme": "Theme switch",
+  "pageSwitchLang": "Language switch",
   "pageThree": "Page three",
   "logout": "Logout",
-  "lightTheme": "Light theme"
+  "lightTheme": "Light theme",
+  "footer": "Footer",
+  "header": "Header"
 }

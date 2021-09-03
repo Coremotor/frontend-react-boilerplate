@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { setActiveTab } from 'store/modules/theme/reducer'
-import { EnumTabs } from 'store/modules/theme/types'
+import { setActiveTab } from 'store/modules/ui/reducer'
+import { EnumTabs } from 'store/modules/ui/types'
 import { DefaultThemeProps } from 'styles/types'
 import { useTranslation } from 'react-i18next'
 

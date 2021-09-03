@@ -1,8 +1,10 @@
 {
   "mainPage": "Главная страница",
-  "pageOne": "Первая страница",
-  "pageTwo": "Вторая страница",
+  "pageSwitchTheme": "Выбор темы",
+  "pageSwitchLang": "Выбор языка",
   "pageThree": "Третья страница",
   "logout": "Выход",
-  "lightTheme": "Светлая тема"
+  "lightTheme": "Светлая тема",
+  "footer": "Footer",
+  "header": "Header"
 }
