@@ -41,8 +41,12 @@ const NavList = () => {
         <LinkText activeTab={activeTab === EnumTabs.language}>{t('pageSwitchLang')}</LinkText>
       </StyledNavLink>
 
-      <StyledNavLink to={Routes.pageThree} onClick={onLinkClick}>
-        <LinkText activeTab={activeTab === EnumTabs.pageThree}>{t('pageThree')}</LinkText>
+      <StyledNavLink to={Routes.pageWithParams + '/' + '42'} onClick={onLinkClick}>
+        <LinkText activeTab={activeTab === EnumTabs.pageWithParams}>{t('pageWithParams')}</LinkText>
+      </StyledNavLink>
+
+      <StyledNavLink to={Routes.files} onClick={onLinkClick}>
+        <LinkText activeTab={activeTab === EnumTabs.filesPage}>{t('filesPage')}</LinkText>
       </StyledNavLink>
     </>
   )

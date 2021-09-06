@@ -2,9 +2,12 @@
   "mainPage": "Main page",
   "pageSwitchTheme": "Theme switch",
   "pageSwitchLang": "Language switch",
-  "pageThree": "Page three",
+  "pageWithParams": "Page with params",
   "logout": "Logout",
   "lightTheme": "Light theme",
   "footer": "Footer",
-  "header": "Header"
+  "header": "Header",
+  "chooseFiles": "Choose files",
+  "sendFiles": "Send files",
+  "filesPage": "Files"
 }

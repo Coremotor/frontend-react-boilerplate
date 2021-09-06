@@ -9,7 +9,7 @@ import { PageSwitchTheme } from '../pageSwitchTheme'
 import { PageSwitchLang } from '../pageSwitchLang'
 import { Footer } from './components/footer'
 import { NotificationPopUp } from 'components/notificationPopUp'
-import { PageThree } from 'pages/pageThree'
+import { PageWithParams } from 'pages/pageWithParams'
 import { useDispatch, useSelector } from 'react-redux'
 import { setError } from 'store/modules/errors/reducer'
 import { getError } from 'store/modules/errors/selectors'
@@ -17,6 +17,7 @@ import { DefaultThemeProps } from 'styles/types'
 import { MobileNavigation, Navigation } from 'pages/home/components/navigation/leftNavMenu'
 // import { MobileNavigation, Navigation } from 'pages/home/components/navigation/topNavMenu'
 import { getIsMobileDevise, getShowMenu } from 'store/modules/ui/selectors'
+import { FilesPage } from 'pages/files'
 
 export const Home: FC = () => {
   const dispatch = useDispatch()
@@ -34,7 +35,7 @@ export const Home: FC = () => {
 
   return (
     <Container>
-      {error && error.error !== 'Not Found' && (
+      {error && error.statusCode !== 404 && (
         <NotificationPopUp
           isError={true}
           title="Внимание"
@@ -52,7 +53,8 @@ export const Home: FC = () => {
           <Route exact path={Routes.main} component={MainPage} />
           <Route exact path={Routes.theme} component={PageSwitchTheme} />
           <Route exact path={Routes.language} component={PageSwitchLang} />
-          <Route exact path={Routes.pageThree} component={PageThree} />
+          <Route exact path={Routes.pageWithParams + '/:id'} component={PageWithParams} />
+          <Route exact path={Routes.files} component={FilesPage} />
         </Switch>
 
         <Footer />

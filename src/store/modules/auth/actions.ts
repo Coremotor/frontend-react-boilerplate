@@ -6,7 +6,6 @@ import { setError } from 'store/modules/errors/reducer'
 
 export const authRequest = (data: TAuthFormValues, goHomePage: () => void) => {
   return async (dispatch: AppDispatch) => {
-    dispatch(setError(null))
     dispatch(setIsLoading(true))
     try {
       // const response = await request.post('/users/signin/email', {
@@ -14,10 +13,10 @@ export const authRequest = (data: TAuthFormValues, goHomePage: () => void) => {
       // })
       // localStorage.setItem('token', response.data.data.token)
       localStorage.setItem('token', 'response.data.data.token')
-      dispatch(setIsLoading(false))
       goHomePage()
     } catch (error) {
       dispatch(setError(error.response.data))
+    } finally {
       dispatch(setIsLoading(false))
     }
   }
@@ -25,7 +24,6 @@ export const authRequest = (data: TAuthFormValues, goHomePage: () => void) => {
 
 export const logout = () => {
   return async (dispatch: AppDispatch) => {
-    dispatch(setError(null))
     try {
       // await request.post('/users/logout')
       localStorage.removeItem('persist:root')

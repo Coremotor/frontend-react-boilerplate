@@ -2,9 +2,13 @@
   "mainPage": "Главная страница",
   "pageSwitchTheme": "Выбор темы",
   "pageSwitchLang": "Выбор языка",
-  "pageThree": "Третья страница",
+  "pageWithParams": "С параметром",
   "logout": "Выход",
   "lightTheme": "Светлая тема",
   "footer": "Footer",
-  "header": "Header"
+  "header": "Header",
+  "chooseFiles": "Выбрать файлы",
+  "sendFiles": "Отправить файлы",
+  "filesPage": "Файлы"
+
 }

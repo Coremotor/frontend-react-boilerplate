@@ -3,6 +3,7 @@ export enum Routes {
   auth = '/auth',
   theme = '/theme',
   language = '/language',
-  pageThree = '/page-three',
+  pageWithParams = '/page-with-params',
+  files = '/files',
   error = '/error',
 }

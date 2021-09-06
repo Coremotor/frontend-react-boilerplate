@@ -9,5 +9,6 @@ export enum EnumTabs {
   main = 'main',
   theme = 'theme',
   language = 'language',
-  pageThree = 'pageThree',
+  pageWithParams = 'pageWithParams',
+  filesPage = 'filesPage',
 }

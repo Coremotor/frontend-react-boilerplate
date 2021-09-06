@@ -5,17 +5,20 @@ import { setActiveTab } from 'store/modules/ui/reducer'
 import { EnumTabs } from 'store/modules/ui/types'
 import { DefaultThemeProps } from 'styles/types'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
 
-export const PageThree: FC /*<Props>*/ = () => {
+export const PageWithParams: FC /*<Props>*/ = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
+  const { id } = useParams<{ id: string }>()
+
   useEffect(() => {
-    dispatch(setActiveTab(EnumTabs.pageThree))
+    dispatch(setActiveTab(EnumTabs.pageWithParams))
   }, [])
   return (
     <Container>
-      <Text>{t('pageThree')}</Text>
+      <Text>{t('pageWithParams') + ': ' + id}</Text>
     </Container>
   )
 }
