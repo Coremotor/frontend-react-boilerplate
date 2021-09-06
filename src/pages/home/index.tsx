@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { Header } from './components/header'
-import { Redirect, Route, Switch } from 'react-router-dom'
+// import { Header } from './components/header/headerWithNavMenu'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import { Routes } from 'routes/routes'
 import styled from 'styled-components'
 import { MainPage } from '../main'
@@ -14,6 +15,7 @@ import { setError } from 'store/modules/errors/reducer'
 import { getError } from 'store/modules/errors/selectors'
 import { DefaultThemeProps } from 'styles/types'
 import { MobileNavigation, Navigation } from 'pages/home/components/navigation/leftNavMenu'
+// import { MobileNavigation, Navigation } from 'pages/home/components/navigation/topNavMenu'
 import { getIsMobileDevise, getShowMenu } from 'store/modules/ui/selectors'
 
 export const Home: FC = () => {
@@ -21,6 +23,14 @@ export const Home: FC = () => {
   const error = useSelector(getError)
   const isMobile = useSelector(getIsMobileDevise)
   const showMenu = useSelector(getShowMenu)
+  const history = useHistory()
+
+  if (error?.statusCode === 401) {
+    history.push(Routes.auth)
+  }
+  if (error?.statusCode === 404) {
+    history.push(Routes.error)
+  }
 
   return (
     <Container>
@@ -33,31 +43,15 @@ export const Home: FC = () => {
         />
       )}
 
-      {error?.error === 'Unauthorized' && (
-        <Redirect
-          to={{
-            pathname: Routes.auth,
-          }}
-        />
-      )}
-
-      {error?.error === 'Not Found' && (
-        <Redirect
-          to={{
-            pathname: Routes.error,
-          }}
-        />
-      )}
-
+      {/*comment next line if use topNavMenu*/}
       {isMobile ? showMenu && <MobileNavigation /> : <Navigation />}
-
       <Wrapper>
         <Header />
 
         <Switch>
           <Route exact path={Routes.main} component={MainPage} />
-          <Route exact path={Routes.pageOne} component={PageSwitchTheme} />
-          <Route exact path={Routes.pageTwo} component={PageSwitchLang} />
+          <Route exact path={Routes.theme} component={PageSwitchTheme} />
+          <Route exact path={Routes.language} component={PageSwitchLang} />
           <Route exact path={Routes.pageThree} component={PageThree} />
         </Switch>
 

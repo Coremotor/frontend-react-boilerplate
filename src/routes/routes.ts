@@ -1,8 +1,8 @@
 export enum Routes {
   main = '/',
   auth = '/auth',
-  pageOne = '/page-one',
-  pageTwo = '/page-two',
+  theme = '/theme',
+  language = '/language',
   pageThree = '/page-three',
   error = '/error',
 }

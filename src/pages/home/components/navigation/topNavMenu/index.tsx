@@ -29,19 +29,19 @@ const NavList = () => {
 
   return (
     <>
-      <StyledNavLink to={Routes.main} onClick={onLinkClick}>
+      <StyledNavLink isMobile={isMobile} to={Routes.main} onClick={onLinkClick}>
         <LinkText activeTab={activeTab === EnumTabs.main}>{t('mainPage')}</LinkText>
       </StyledNavLink>
 
-      <StyledNavLink to={Routes.theme} onClick={onLinkClick}>
+      <StyledNavLink isMobile={isMobile} to={Routes.theme} onClick={onLinkClick}>
         <LinkText activeTab={activeTab === EnumTabs.theme}>{t('pageSwitchTheme')}</LinkText>
       </StyledNavLink>
 
-      <StyledNavLink to={Routes.language} onClick={onLinkClick}>
+      <StyledNavLink isMobile={isMobile} to={Routes.language} onClick={onLinkClick}>
         <LinkText activeTab={activeTab === EnumTabs.language}>{t('pageSwitchLang')}</LinkText>
       </StyledNavLink>
 
-      <StyledNavLink to={Routes.pageThree} onClick={onLinkClick}>
+      <StyledNavLink isMobile={isMobile} to={Routes.pageThree} onClick={onLinkClick}>
         <LinkText activeTab={activeTab === EnumTabs.pageThree}>{t('pageThree')}</LinkText>
       </StyledNavLink>
     </>
@@ -60,10 +60,7 @@ export const MobileNavigation = () => {
   const dispatch = useDispatch()
   const hideNavMenu = () => dispatch(setShowMenu(false))
 
-  const onWrapperClick = () => {
-    dispatch(setShowMenu(false))
-  }
-
+  const onWrapperClick = () => dispatch(setShowMenu(false))
   const onMobileNavContainerClick = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()
 
   return (
@@ -77,11 +74,8 @@ export const MobileNavigation = () => {
 }
 
 const NavListContainer = styled.nav`
-  min-width: 200px;
   display: flex;
-  flex-direction: column;
-  border-right: 1px solid ${(props: DefaultThemeProps) => props.theme.text.primary};
-  padding: 20px;
+  align-items: center;
 `
 
 const Wrapper = styled.div`
@@ -103,11 +97,12 @@ const MobileNavContainer = styled.div`
   padding: 20px;
 `
 
-const StyledNavLink = styled(Link)`
+const StyledNavLink = styled(Link)<{ isMobile: boolean }>`
   display: flex;
   align-items: center;
   text-decoration: none;
-  margin-bottom: 20px;
+  margin-bottom: ${({ isMobile }) => (isMobile ? '20px' : 0)};
+  margin-right: ${({ isMobile }) => (isMobile ? 0 : '20px')};
   &:visited {
     color: ${(props: DefaultThemeProps) => props.theme.text.primary};
   }
@@ -116,6 +111,7 @@ const StyledNavLink = styled(Link)`
   }
   &:last-child {
     margin-bottom: 0;
+    margin-right: 0;
   }
 `
 
