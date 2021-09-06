@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setError } from 'store/modules/errors/reducer'
 import { getError } from 'store/modules/errors/selectors'
 import { DefaultThemeProps } from 'styles/types'
-import { MobileNavigation, Navigation } from './components/navigation'
+import { MobileNavigation, Navigation } from 'pages/home/components/navigation/leftNavMenu'
 import { getIsMobileDevise, getShowMenu } from 'store/modules/ui/selectors'
 
 export const Home: FC = () => {
