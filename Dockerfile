@@ -5,17 +5,16 @@ WORKDIR /usr/src/app
 
 # Copy both package.json AND package-lock.json
 COPY package*.json ./
-COPY ../../Downloads/react-starter-pack-main/react-starter-pack-main/yarn.lock ./
+COPY yarn.lock ./
 
 # Install dependencies
 RUN yarn install --frozen-lockfile
 
 # Copy source files
-COPY ../../Downloads/react-starter-pack-main/react-starter-pack-main .
+COPY . .
 
 # Copy args to env variables
 ARG REACT_APP_BASE_URL
-ENV REACT_APP_BASE_URL=REACT_APP_BASE_URL
 
 # Build the project and copy the files
 RUN yarn build
