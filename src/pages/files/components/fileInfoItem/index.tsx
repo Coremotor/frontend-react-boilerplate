@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 import { DefaultThemeProps } from 'styles/types'
+import { GrFormClose } from 'react-icons/all'
 
 type TProps = {
   name: string
@@ -8,21 +9,31 @@ type TProps = {
 }
 
 export const FileInfoItem: FC<TProps> = (props: TProps) => {
+  const remove = () => props.onClick(props.name)
   return (
-    <div>
+    <Item>
       <Name>{props.name}</Name>
-      <Del onClick={() => props.onClick(props.name)}>x</Del>
-    </div>
+      <StyledGrFormClose onClick={remove} />
+    </Item>
   )
 }
+
+const Item = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
 
 const Name = styled.span`
   color: ${(props: DefaultThemeProps) => props.theme.text.primary};
   margin-right: 20px;
 `
 
-const Del = styled.span`
+const StyledGrFormClose = styled(GrFormClose)`
+  width: 16px;
+  height: 16px;
   cursor: pointer;
-  color: ${(props: DefaultThemeProps) => props.theme.text.primary};
-  padding: 5px;
+  & path {
+    stroke: crimson;
+  }
 `
