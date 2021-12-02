@@ -1,5 +1,5 @@
-# stage1 as builder
-FROM node:12.18.2 as builder
+# stage as builder
+FROM node:16.13.1 as builder
 
 WORKDIR /usr/src/app
 

@@ -5,7 +5,7 @@ import { setActiveTab } from 'store/modules/ui/reducer'
 import { EnumTabs } from 'store/modules/ui/types'
 import { useTranslation } from 'react-i18next'
 
-export const PageSwitchLang: FC /*<Props>*/ = () => {
+export const Lang: FC /*<Props>*/ = () => {
   const { i18n } = useTranslation()
   const dispatch = useDispatch()
   const changeLang = async (lg: string) => {

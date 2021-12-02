@@ -2,7 +2,6 @@
 import { setIsLoading } from 'store/modules/auth/reducer'
 import { AppDispatch } from 'store/store'
 import { TAuthFormValues } from './types'
-import { setError } from 'store/modules/errors/reducer'
 
 export const authRequest = (data: TAuthFormValues, goHomePage: () => void) => {
   return async (dispatch: AppDispatch) => {
@@ -15,7 +14,7 @@ export const authRequest = (data: TAuthFormValues, goHomePage: () => void) => {
       localStorage.setItem('token', 'response.data.data.token')
       goHomePage()
     } catch (error) {
-      dispatch(setError(error.response.data))
+      console.log(error)
     } finally {
       dispatch(setIsLoading(false))
     }
@@ -24,12 +23,15 @@ export const authRequest = (data: TAuthFormValues, goHomePage: () => void) => {
 
 export const logout = () => {
   return async (dispatch: AppDispatch) => {
+    dispatch(setIsLoading(true))
     try {
       // await request.post('/users/logout')
       localStorage.removeItem('persist:root')
       localStorage.removeItem('token')
     } catch (error) {
-      dispatch(setError(error.response.data))
+      console.log(error)
+    } finally {
+      dispatch(setIsLoading(false))
     }
   }
 }

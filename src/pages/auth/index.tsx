@@ -7,13 +7,9 @@ import { authRequest } from 'store/modules/auth/actions'
 import { useHistory } from 'react-router-dom'
 import { Routes } from 'routes/routes'
 import { getIsLoading } from 'store/modules/auth/selectors'
-import { setError } from 'store/modules/errors/reducer'
-import { NotificationPopUp } from 'components/notificationPopUp'
-import { getError } from 'store/modules/errors/selectors'
 
 export const AuthPage: FC = () => {
   const isLoading = useSelector(getIsLoading)
-  const error = useSelector(getError)
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -31,35 +27,16 @@ export const AuthPage: FC = () => {
     dispatch(authRequest(data, goHomePage))
   }
 
-  const inputHandler = () => {
-    dispatch(setError(null))
-  }
-
   const goHomePage = () => {
     history.push(Routes.main)
   }
 
   return (
     <Container>
-      {error && error.error !== 'Not Found' && (
-        <NotificationPopUp
-          isError={true}
-          title="Внимание"
-          errorObj={error}
-          closePopUp={() => dispatch(setError(null))}
-        />
-      )}
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          onInput={inputHandler}
-          type="email"
-          {...register('email', { required: true })}
-          placeholder="Почта"
-          autoComplete="off"
-        />
+        <Input type="email" {...register('email', { required: true })} placeholder="Почта" autoComplete="off" />
         {errors.email && <span>Поле обязательно для заполнения</span>}
         <Input
-          onInput={inputHandler}
           type="password"
           {...register('password', { required: true, minLength: 6 })}
           placeholder="Пароль"

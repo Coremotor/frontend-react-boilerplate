@@ -1,18 +1,15 @@
 import React, { FC } from 'react'
 import { Header } from './components/header'
 // import { Header } from './components/header/headerWithNavMenu'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { Routes } from 'routes/routes'
 import styled from 'styled-components'
 import { MainPage } from '../main'
-import { PageSwitchTheme } from '../pageSwitchTheme'
-import { PageSwitchLang } from '../pageSwitchLang'
+import { Theme } from '../theme'
+import { Lang } from '../lang'
 import { Footer } from './components/footer'
-import { NotificationPopUp } from 'components/notificationPopUp'
-import { PageWithParams } from 'pages/pageWithParams'
-import { useDispatch, useSelector } from 'react-redux'
-import { setError } from 'store/modules/errors/reducer'
-import { getError } from 'store/modules/errors/selectors'
+import { Params } from 'pages/params'
+import { useSelector } from 'react-redux'
 import { DefaultThemeProps } from 'styles/types'
 import { MobileNavigation, Navigation } from 'pages/home/components/navigation/leftNavMenu'
 // import { MobileNavigation, Navigation } from 'pages/home/components/navigation/topNavMenu'
@@ -20,30 +17,11 @@ import { getIsMobileDevise, getShowMenu } from 'store/modules/ui/selectors'
 import { FilesPage } from 'pages/files'
 
 export const Home: FC = () => {
-  const dispatch = useDispatch()
-  const error = useSelector(getError)
   const isMobile = useSelector(getIsMobileDevise)
   const showMenu = useSelector(getShowMenu)
-  const history = useHistory()
-
-  if (error?.statusCode === 401) {
-    history.push(Routes.auth)
-  }
-  if (error?.statusCode === 404) {
-    history.push(Routes.error)
-  }
 
   return (
     <Container>
-      {error && error.statusCode !== 404 && (
-        <NotificationPopUp
-          isError={true}
-          title="Внимание"
-          errorObj={error}
-          closePopUp={() => dispatch(setError(null))}
-        />
-      )}
-
       {/*comment next line if use topNavMenu*/}
       {isMobile ? showMenu && <MobileNavigation /> : <Navigation />}
       <Wrapper>
@@ -51,9 +29,9 @@ export const Home: FC = () => {
 
         <Switch>
           <Route exact path={Routes.main} component={MainPage} />
-          <Route exact path={Routes.theme} component={PageSwitchTheme} />
-          <Route exact path={Routes.language} component={PageSwitchLang} />
-          <Route exact path={Routes.pageWithParams + '/:id'} component={PageWithParams} />
+          <Route exact path={Routes.theme} component={Theme} />
+          <Route exact path={Routes.language} component={Lang} />
+          <Route exact path={Routes.pageWithParams + '/:id'} component={Params} />
           <Route exact path={Routes.files} component={FilesPage} />
         </Switch>
 

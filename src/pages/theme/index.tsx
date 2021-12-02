@@ -7,7 +7,7 @@ import { DefaultThemeProps, themeNames } from 'styles/types'
 import { useTranslation } from 'react-i18next'
 import { getTheme } from 'store/modules/ui/selectors'
 
-export const PageSwitchTheme: FC /*<Props>*/ = () => {
+export const Theme: FC /*<Props>*/ = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const theme = useSelector(getTheme)

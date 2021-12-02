@@ -7,7 +7,7 @@ import { DefaultThemeProps } from 'styles/types'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-export const PageWithParams: FC /*<Props>*/ = () => {
+export const Params: FC /*<Props>*/ = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 

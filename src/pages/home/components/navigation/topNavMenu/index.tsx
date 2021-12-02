@@ -34,11 +34,11 @@ const NavList = () => {
       </StyledNavLink>
 
       <StyledNavLink isMobile={isMobile} to={Routes.theme} onClick={onLinkClick}>
-        <LinkText activeTab={activeTab === EnumTabs.theme}>{t('pageSwitchTheme')}</LinkText>
+        <LinkText activeTab={activeTab === EnumTabs.theme}>{t('theme')}</LinkText>
       </StyledNavLink>
 
       <StyledNavLink isMobile={isMobile} to={Routes.language} onClick={onLinkClick}>
-        <LinkText activeTab={activeTab === EnumTabs.language}>{t('pageSwitchLang')}</LinkText>
+        <LinkText activeTab={activeTab === EnumTabs.language}>{t('lang')}</LinkText>
       </StyledNavLink>
 
       <StyledNavLink isMobile={isMobile} to={Routes.pageWithParams + '/' + '42'} onClick={onLinkClick}>

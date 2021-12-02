@@ -8,6 +8,7 @@ import { getTheme } from 'store/modules/ui/selectors'
 import { GlobalStyles } from 'styles/global'
 import { setIsMobileDevise, setShowMenu } from 'store/modules/ui/reducer'
 import { BREAKPOINTS } from 'styles/breakpoints'
+import { ToastContainer } from 'react-toastify'
 
 export function App() {
   const dispatch = useDispatch()
@@ -41,6 +42,7 @@ export function App() {
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
       <RootRoute />
+      <ToastContainer />
     </ThemeProvider>
   )
 }

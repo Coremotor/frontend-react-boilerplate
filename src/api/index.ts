@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { config } from 'config/config'
+import { errorNotify } from 'error'
+import { Routes } from 'routes/routes'
 
 export const request = axios.create({
   baseURL: config.baseUrl,
@@ -9,10 +11,9 @@ export const request = axios.create({
 request.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
-    if (token != null) {
+    if (token) {
       config.headers.authorization = `Bearer ${token}`
     }
-    // console.log('request config after interceptor:', config)
     return config
   },
   (error) => Promise.reject(error),
@@ -23,9 +24,10 @@ request.interceptors.response.use(
     return response
   },
   function (error) {
-    // console.log('interceptors_ERROR_REQUEST', error.response.data)
-    if (error.response.data.error === 'Unauthorized' || error.response.data.error === 'Access denied') {
+    errorNotify(error)
+    if (error.response.data.statusCode === 401 || error.response.data.error === 'Access denied') {
       localStorage.removeItem('token')
+      location.replace(Routes.auth)
     }
     return Promise.reject(error)
   },
