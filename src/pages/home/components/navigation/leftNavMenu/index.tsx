@@ -42,7 +42,7 @@ const NavList = () => {
       </StyledNavLink>
 
       <StyledNavLink to={Routes.pageWithParams + '/' + '42'} onClick={onLinkClick}>
-        <LinkText activeTab={activeTab === EnumTabs.pageWithParams}>{t('pageWithParams')}</LinkText>
+        <LinkText activeTab={activeTab === EnumTabs.pageWithParams}>{t('params')}</LinkText>
       </StyledNavLink>
 
       <StyledNavLink to={Routes.files} onClick={onLinkClick}>

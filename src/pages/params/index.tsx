@@ -18,7 +18,7 @@ export const Params: FC /*<Props>*/ = () => {
   }, [])
   return (
     <Container>
-      <Text>{t('pageWithParams') + ': ' + id}</Text>
+      <Text>{t('params') + ': ' + id}</Text>
     </Container>
   )
 }

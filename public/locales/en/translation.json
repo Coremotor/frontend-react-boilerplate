@@ -1,8 +1,8 @@
 {
   "mainPage": "Main page",
-  "pageSwitchTheme": "Theme switch",
-  "pageSwitchLang": "Language switch",
-  "pageWithParams": "Page with params",
+  "theme": "Theme switch",
+  "lang": "Language switch",
+  "params": "Page with params",
   "logout": "Logout",
   "lightTheme": "Light theme",
   "footer": "Footer",

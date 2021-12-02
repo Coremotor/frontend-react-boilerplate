@@ -1,8 +1,8 @@
 {
   "mainPage": "Главная страница",
-  "pageSwitchTheme": "Выбор темы",
-  "pageSwitchLang": "Выбор языка",
-  "pageWithParams": "С параметром",
+  "theme": "Выбор темы",
+  "lang": "Выбор языка",
+  "params": "С параметром",
   "logout": "Выход",
   "lightTheme": "Светлая тема",
   "footer": "Footer",
